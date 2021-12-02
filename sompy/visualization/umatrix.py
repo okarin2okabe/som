@@ -77,6 +77,7 @@ class UMatrixView(MatplotView):
             blobs = blob_log(image, max_sigma=5, num_sigma=4, threshold=.152)
             blobs[:, 2] = blobs[:, 2] * sqrt(2)
             imshow(umat, cmap=plt.cm.get_cmap('RdYlBu_r'), alpha=1)
+            plt.colorbar(orientation="horizontal")
             sel_points = list()
 
             for blob in blobs:
@@ -90,6 +91,6 @@ class UMatrixView(MatplotView):
                 plt.plot(coord[:, 1][sel_point[:, 0]],
                          coord[:, 0][sel_point[:, 0]], '.r')
                 sel_points.append(sel_point[:, 0])
-        plt.show()
-        colorbar(orientation="horizontal")
+#        plt.show()
+#        plt.colorbar(orientation="horizontal")
         return sel_points, umat
