@@ -562,7 +562,7 @@ class SOM(object):
                 temp = np.array(temp)
                 bootstrap_samples.append(temp)
 
-
+            SSE_BTS_K = []
             for i in range(2,n_clusters+1):
 
                 SSE_K = []
