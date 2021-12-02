@@ -541,7 +541,7 @@ class SOM(object):
     def cluster(self, n_clusters=8, opt = 0):
         import sklearn.cluster as clust
 
-        print("Performing K-means SSE elbow sweep...")
+        print("Performing K-means SSE elbow plot ...")
 
         # generate the bootstrap samples
         BTS = 20
@@ -564,7 +564,7 @@ class SOM(object):
 
             SSE_BTS_K = []
             for i in range(2,n_clusters+1):
-
+                print(f"Working on bootstrap sample on K={i}")
                 SSE_K = []
                 for l in range(BTS):
 #                    print("Working on bootstrap sample " + str(l) + " K: " + str(i))
@@ -597,8 +597,8 @@ class SOM(object):
         km = clust.KMeans(n_clusters=index).fit(normalized_data)
 
         # print cluster centroids
-        for i in range(index):
-            print("Centroid " + str(i) + str(km.cluster_centers_[i]))
+#        for i in range(index):
+#            print("Centroid " + str(i) + str(km.cluster_centers_[i]))
 
         self.cluster_labels = km.labels_
         return km.labels_, km, normalized_data
