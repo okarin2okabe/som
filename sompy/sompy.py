@@ -562,12 +562,12 @@ class SOM(object):
                 temp = np.array(temp)
                 bootstrap_samples.append(temp)
 
-            SSE_BTS_K = []
+
             for i in range(2,n_clusters+1):
 
                 SSE_K = []
                 for l in range(BTS):
-                    print("Working on bootstrap sample " + str(l) + " K: " + str(i))
+#                    print("Working on bootstrap sample " + str(l) + " K: " + str(i))
                     km = clust.KMeans(n_clusters=i).fit(bootstrap_samples[l])
                     SSE = 0
                     # calculate the Sum of Square Errors and compute the elbow point
@@ -578,18 +578,21 @@ class SOM(object):
                 # average the bootstrapped SSE's
                 SSE_BTS_K.append(np.sum(SSE_K) / float(BTS))
 
-
-
-            # find the index of the maximum value of the 1st difference and add 1 to get the optimal K
-            first_diff = np.diff(SSE_BTS_K)
-            print("SSE for k = 2 to " + str(n_clusters) + " " + str(SSE_BTS_K))
-            index = np.argmax(first_diff) + 1
-
-            print("Optimal K = " + str(index))
+            # find the index of the maximum value of the 2nd derivate and add 1 to get the optimal K
+            diff2 = np.diff(SSE_BTS_K,2)
+#            print("SSE for k = 2 to " + str(n_clusters) + " " + str(SSE_BTS_K))
+            index = np.argmax(diff2) + 3
+#            print("Optimal K = " + str(index))
+            cc=np.arange(2,len(SSE_BTS_K)+2)
+            plt.subplots(figsize=(10,5))
+            plt.plot(cc,SSE_BTS_K,'-o',label="SSE")
+            plt.plot(cc[:-2]+1,diff2,'-o',label="f ''")
+            plt.xticks(range(2,21,2))
+            plt.title("Elbow Plot")
+            plt.legend()
 
         else:
             index = opt
-
 
         km = clust.KMeans(n_clusters=index).fit(normalized_data)
 
@@ -598,7 +601,7 @@ class SOM(object):
             print("Centroid " + str(i) + str(km.cluster_centers_[i]))
 
         self.cluster_labels = km.labels_
-        return km.labels_, km, normalized_data,SSE_BTS_K
+        return km.labels_, km, normalized_data
 
     def predict_probability(self, data, target, k=5):
         """

@@ -90,6 +90,6 @@ class UMatrixView(MatplotView):
                 plt.plot(coord[:, 1][sel_point[:, 0]],
                          coord[:, 0][sel_point[:, 0]], '.r')
                 sel_points.append(sel_point[:, 0])
-        colorbar(orientation="horizontal")
         plt.show()
+        colorbar(orientation="horizontal")
         return sel_points, umat
