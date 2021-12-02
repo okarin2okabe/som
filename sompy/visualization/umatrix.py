@@ -51,7 +51,7 @@ class UMatrixView(MatplotView):
         if show_data:
             plt.scatter(coord[:, 1], coord[:, 0], s=2, alpha=1., c='Gray',
                         marker='o', cmap='jet', linewidths=3, edgecolor='Gray')
-            plt.axis('off')
+            plt.tick_params(axis='both',which='both',bottom=False,top=False,labelbottom=False,right=False,left=False,labelleft=False)
 
         if labels:
             if labels is True:
@@ -91,7 +91,7 @@ class UMatrixView(MatplotView):
                 plt.plot(coord[:, 1][sel_point[:, 0]],
                          coord[:, 0][sel_point[:, 0]], '.r')
                 sel_points.append(sel_point[:, 0])
-        plt.axis('off')
+#        plt.tick_params(axis='both',which='both',bottom=False, top=False, labelbottom=False,right=False,left=False,labelleft=False)
 #        plt.show()
 #        plt.colorbar(orientation="horizontal")
         return sel_points, umat
