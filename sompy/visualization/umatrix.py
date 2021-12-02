@@ -37,7 +37,7 @@ class UMatrixView(MatplotView):
 
         self._fig, ax = plt.subplots(1, 1)
         imshow(umat, cmap=plt.cm.get_cmap('RdYlBu_r'), alpha=1)
-
+        plt.colorbar(orientation="horizontal")
         if contooor:
             mn = np.min(umat.flatten())
             mx = np.max(umat.flatten())
@@ -77,7 +77,6 @@ class UMatrixView(MatplotView):
             blobs = blob_log(image, max_sigma=5, num_sigma=4, threshold=.152)
             blobs[:, 2] = blobs[:, 2] * sqrt(2)
             imshow(umat, cmap=plt.cm.get_cmap('RdYlBu_r'), alpha=1)
-            plt.colorbar(orientation="horizontal")
             sel_points = list()
 
             for blob in blobs:
