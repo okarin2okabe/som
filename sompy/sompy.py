@@ -275,7 +275,7 @@ class SOM(object):
         #print("maxtrainlen %d",maxtrainlen)
         #lbugnon: add trainlen_factor
         trainlen=int(trainlen*trainlen_factor)
-        
+
         if self.initialization == 'random':
             radiusin = max(1, np.ceil(ms/3.)) if not radiusin else radiusin
             radiusfin = max(1, radiusin/6.) if not radiusfin else radiusfin
@@ -303,11 +303,11 @@ class SOM(object):
             radiusfin = 1 if not radiusfin else radiusfin # max(1, ms/128)
 
         #print("maxtrainlen %d",maxtrainlen)
-        
+
         #lbugnon: add trainlen_factor
         trainlen=int(trainlen_factor*trainlen)
-        
-            
+
+
         self._batchtrain(trainlen, radiusin, radiusfin, njob, shared_memory)
 
     def _batchtrain(self, trainlen, radiusin, radiusfin, njob=1,
@@ -354,9 +354,9 @@ class SOM(object):
                 qerror)
             if np.any(np.isnan(qerror)):
                 logging.info("nan quantization error, exit train\n")
-                
+
                 #sys.exit("quantization error=nan, exit train")
-            
+
         bmu[1] = np.sqrt(bmu[1] + fixed_euclidean_x2)
         self._bmu = bmu
 
@@ -598,7 +598,7 @@ class SOM(object):
             print("Centroid " + str(i) + str(km.cluster_centers_[i]))
 
         self.cluster_labels = km.labels_
-        return km.labels_, km, normalized_data
+        return km.labels_, km, normalized_data,SSE_BTS_K
 
     def predict_probability(self, data, target, k=5):
         """
@@ -758,6 +758,3 @@ def _chunk_based_bmu_find(input_matrix, codebook, y2, nth=1):
         del ddata
 
     return bmu
-
-
-
