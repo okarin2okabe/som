@@ -98,7 +98,7 @@ class View2D(MapView):
             pl = plt.pcolor(mp[::-1], norm=norm)
             plt.axis([0, som.codebook.mapsize[1], 0, som.codebook.mapsize[0]])
             plt.title(names[axis_num - 1])
-            pl.tick_params(axis='both',which='both',bottom=False,top=False,labelbottom=False,right=False,left=False,labelleft=False)
+            ax.tick_params(axis='both',which='both',bottom=False,top=False,labelbottom=False,right=False,left=False,labelleft=False)
 #            ax.set_yticklabels([])
 #            ax.set_xticklabels([])
             plt.colorbar(pl)
