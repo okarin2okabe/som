@@ -5,7 +5,7 @@ from pylab import imshow, contour, colorbar
 from math import sqrt
 import numpy as np
 import scipy
-
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 class UMatrixView(MatplotView):
 
@@ -29,16 +29,19 @@ class UMatrixView(MatplotView):
         return Umatrix.reshape(som.codebook.mapsize)
 
     def show(self, som, distance2=1, row_normalized=False, show_data=True,
-             contooor=True, blob=False, labels=False):
+             contooor=True, blob=False, labels=False,size=(6,5),orientation="vertical"):
         umat = self.build_u_matrix(som, distance=distance2,
                                    row_normalized=row_normalized)
         msz = som.codebook.mapsize
         proj = som.project_data(som.data_raw)
         coord = som.bmu_ind_to_xy(proj)
 
-        self._fig, ax = plt.subplots(1, 1)
-        imshow(umat, cmap=plt.cm.get_cmap('RdYlBu_r'), alpha=1)
-        colorbar(orientation="horizontal")
+        self._fig, ax = plt.subplots(figsize=size)
+        im=imshow(umat, cmap=plt.cm.get_cmap('RdYlBu_r'), alpha=1)
+        ax.tick_params(axis='both',which='both',bottom=False,top=False,labelbottom=False,right=False,left=False,labelleft=False)
+        divider = make_axes_locatable(ax)
+        cax = divider.append_axes('right', size='5%', pad=0.2)
+        colorbar(im,orientation=orientation,cax=cax)
         if contooor:
             mn = np.min(umat.flatten())
             mx = np.max(umat.flatten())
@@ -51,7 +54,6 @@ class UMatrixView(MatplotView):
         if show_data:
             plt.scatter(coord[:, 1], coord[:, 0], s=2, alpha=1., c='Gray',
                         marker='o', cmap='jet', linewidths=3, edgecolor='Gray')
-            plt.tick_params(axis='both',which='both',bottom=False,top=False,labelbottom=False,right=False,left=False,labelleft=False)
 
         if labels:
             if labels is True:

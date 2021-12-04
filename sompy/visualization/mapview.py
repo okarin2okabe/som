@@ -98,8 +98,9 @@ class View2D(MapView):
             pl = plt.pcolor(mp[::-1], norm=norm)
             plt.axis([0, som.codebook.mapsize[1], 0, som.codebook.mapsize[0]])
             plt.title(names[axis_num - 1])
-            ax.set_yticklabels([])
-            ax.set_xticklabels([])
+            pl.tick_params(axis='both',which='both',bottom=False,top=False,labelbottom=False,right=False,left=False,labelleft=False)
+#            ax.set_yticklabels([])
+#            ax.set_xticklabels([])
             plt.colorbar(pl)
 
         #plt.show()
@@ -165,8 +166,8 @@ class View2DPacked(MapView):
         plt.subplots_adjust(hspace=h, wspace=w)
 
         plt.show()
-        
-        
+
+
 class View1D(MapView):
 
     def show(self, som, what='codebook', which_dim='all', cmap=None,

@@ -34,4 +34,4 @@ class HitMapView(MatplotView):
         plt.imshow(codebook.reshape(msz[0], msz[1])[::], alpha=.5)
         plt.show()
 
-        return cents
+#        return cents
