@@ -36,8 +36,8 @@ class UMatrixView(MatplotView):
         proj = som.project_data(som.data_raw)
         coord = som.bmu_ind_to_xy(proj)
 
-#        self._fig, ax = plt.subplots(figsize=size)
-        fig, ax = plt.subplots(figsize=size)
+        self._fig, ax = plt.subplots(figsize=size)
+#        fig, ax = plt.subplots(figsize=size)
         im=imshow(umat, cmap=plt.cm.get_cmap('RdYlBu_r'), alpha=1)
         ax.tick_params(axis='both',which='both',bottom=False,top=False,labelbottom=False,right=False,left=False,labelleft=False)
         divider = make_axes_locatable(ax)
