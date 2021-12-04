@@ -25,7 +25,7 @@ class View(object):
 
 class MatplotView(View):
 
-    def __init__(self, width=10, height=10, title, show_axis=True, packed=True,
+    def __init__(self, width=10, height=10, title="test", show_axis=True, packed=True,
                  text_size=2.8, show_text=True, col_size=6, *args, **kwargs):
         super(MatplotView, self).__init__(width, height, title, show_axis,
                                           packed, text_size, show_text,
