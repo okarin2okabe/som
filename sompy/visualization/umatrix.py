@@ -36,7 +36,8 @@ class UMatrixView(MatplotView):
         proj = som.project_data(som.data_raw)
         coord = som.bmu_ind_to_xy(proj)
 
-        self._fig, ax = plt.subplots(figsize=size)
+#        self._fig, ax = plt.subplots(figsize=size)
+        fig, ax = plt.subplots(figsize=size)
         im=imshow(umat, cmap=plt.cm.get_cmap('RdYlBu_r'), alpha=1)
         ax.tick_params(axis='both',which='both',bottom=False,top=False,labelbottom=False,right=False,left=False,labelleft=False)
         divider = make_axes_locatable(ax)
@@ -63,10 +64,10 @@ class UMatrixView(MatplotView):
                              horizontalalignment='center',
                              verticalalignment='center')
 
-        ratio = float(msz[0])/(msz[0]+msz[1])
+#        ratio = float(msz[0])/(msz[0]+msz[1])
 #        self._fig.set_size_inches((1-ratio)*15, ratio*15)
-        plt.tight_layout()
-        plt.subplots_adjust(hspace=.00, wspace=.000)
+#        plt.tight_layout()
+#        plt.subplots_adjust(hspace=.00, wspace=.000)
         sel_points = list()
 
         if blob:
