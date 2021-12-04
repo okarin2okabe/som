@@ -64,7 +64,7 @@ class UMatrixView(MatplotView):
                              verticalalignment='center')
 
         ratio = float(msz[0])/(msz[0]+msz[1])
-        self._fig.set_size_inches((1-ratio)*15, ratio*15)
+#        self._fig.set_size_inches((1-ratio)*15, ratio*15)
         plt.tight_layout()
         plt.subplots_adjust(hspace=.00, wspace=.000)
         sel_points = list()
