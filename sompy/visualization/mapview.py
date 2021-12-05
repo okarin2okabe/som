@@ -95,7 +95,8 @@ class View2D(MapView):
 
             mp = codebook[:, ind].reshape(som.codebook.mapsize[0],
                                           som.codebook.mapsize[1])
-            pl = plt.pcolor(mp[::-1], norm=norm)
+#            pl = plt.pcolor(mp[::-1], norm=norm)
+            pl = plt.imshow(mp[::-1], norm=norm,aspect="equal")
             plt.axis([0, som.codebook.mapsize[1], 0, som.codebook.mapsize[0]])
             plt.title(names[axis_num - 1])
             ax.tick_params(axis='both',which='both',bottom=False,top=False,labelbottom=False,right=False,left=False,labelleft=False)
