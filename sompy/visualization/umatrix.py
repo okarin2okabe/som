@@ -29,7 +29,7 @@ class UMatrixView(MatplotView):
         return Umatrix.reshape(som.codebook.mapsize)
 
     def show(self, som, distance2=1, row_normalized=False, show_data=True,
-             contooor=True, blob=False, labels=False,size=(6,5),orientation="vertical",interpolation=None):
+             contooor=True, blob=False, labels=False,size=(6,5),orientation="vertical",interpolation=None,cmap='RdYlBu_r'):
         umat = self.build_u_matrix(som, distance=distance2,
                                    row_normalized=row_normalized)
         msz = som.codebook.mapsize
@@ -38,7 +38,8 @@ class UMatrixView(MatplotView):
 
         self._fig, ax = plt.subplots(figsize=size)
 #        fig, ax = plt.subplots(figsize=size)
-        im=imshow(umat, cmap=plt.cm.get_cmap('RdYlBu_r'), interpolation=interpolation)
+        im=imshow(umat, cmap=plt.cm.get_cmap(cmap), interpolation=interpolation)
+#        im=imshow(umat, cmap=plt.cm.get_cmap('RdYlBu_r'), interpolation=interpolation)
         ax.tick_params(axis='both',which='both',bottom=False,top=False,labelbottom=False,right=False,left=False,labelleft=False)
         plt.title('U-matrix')
         divider = make_axes_locatable(ax)

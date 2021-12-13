@@ -538,13 +538,13 @@ class SOM(object):
 
         return out.astype(int)
 
-    def cluster(self, n_clusters=8, opt = 0):
+    def cluster(self, n_clusters=8, opt = 0,BTS = 20):
         import sklearn.cluster as clust
 
         print("Performing K-means SSE elbow plot ...")
 
         # generate the bootstrap samples
-        BTS = 20
+#        BTS = 20
         BTS_SIZE = 0.8
 
         normalized_data = self._normalizer.denormalize_by(self.data_raw,
